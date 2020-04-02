@@ -25,9 +25,8 @@
         <!-- BEGIN SIDEBAR MENU ITEMS-->
         <ul class="menu-items">
             <li class="m-t-30">
-                <a href="#" class="detailed">
-                    <span class="title">Page 1</span>
-                    <span class="details">234 notifications</span>
+            <a href="{{route('dashboard')}}">
+                    <span class="title">Dashboard</span>
                 </a>
                 <span class="icon-thumbnail "><i class="pg-icon">inbox</i></span>
             </li>
