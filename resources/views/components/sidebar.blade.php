@@ -31,8 +31,8 @@
                 <span class="icon-thumbnail "><i class="pg-icon">inbox</i></span>
             </li>
             <li class="">
-                <a href="#">
-                    <span class="title">Page 2</span>
+                <a href="{{route('employee.index')}}">
+                    <span class="title">Employee</span>
                 </a>
                 <span class="icon-thumbnail "><i class="pg-icon">social</i></span>
             </li>

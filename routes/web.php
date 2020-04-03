@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 
 Auth::routes();
-
+Route::resource('employee', 'Master\EmployeeController');
 Route::get('/home', function () {
     return view('demo');
 })->name('home');

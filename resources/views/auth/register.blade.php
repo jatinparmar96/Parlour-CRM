@@ -121,7 +121,6 @@
                             <label id="name-error" class="error" for="name">{{$message}}</label>
                             @enderror
                         </div>
-
                     </div>
                 </div>
                 <div class="row">
