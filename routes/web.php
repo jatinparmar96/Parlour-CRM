@@ -15,11 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard.index');
-})->middleware('auth')->name('dashboard');
+})->middleware('auth')->name('dashboard.index');
 
 
 Auth::routes();
 Route::resource('employee', 'Master\EmployeeController');
+
+Route::resource('service', 'Master\ServiceController');
+Route::resource('customer', 'Master\CustomerController');
+
+
+
 Route::get('/home', function () {
     return view('demo');
 })->name('home');

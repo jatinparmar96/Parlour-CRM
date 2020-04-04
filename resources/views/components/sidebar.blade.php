@@ -24,39 +24,17 @@
     <div class="sidebar-menu">
         <!-- BEGIN SIDEBAR MENU ITEMS-->
         <ul class="menu-items">
-            <li class="m-t-30">
-            <a href="{{route('dashboard')}}">
-                    <span class="title">Dashboard</span>
-                </a>
-                <span class="icon-thumbnail "><i class="pg-icon">inbox</i></span>
+
+            @foreach (config('app.sidebar') as $item)
+            <li    @if($loop->iteration ==1)
+                class="m-t-30"
+                @endif >
+                <a href="{{route($item['route'])}}">
+                        <span class="title">{{$item['name']}}</span>
+                    </a>
+                    <span class="icon-thumbnail "><i class="pg-icon">{{$item['logo']}}</i></span>
             </li>
-            <li class="">
-                <a href="{{route('employee.index')}}">
-                    <span class="title">Employee</span>
-                </a>
-                <span class="icon-thumbnail "><i class="pg-icon">social</i></span>
-            </li>
-            <li class="">
-                <a href="javascript:;">
-                    <span class="title">Page 3</span>
-                    <span class=" arrow"></span>
-                </a>
-                <span class="icon-thumbnail"><i class="pg-icon">brush</i></span>
-                <ul class="sub-menu">
-                    <li class="">
-                        <a href="#">Sub Page 1</a>
-                        <span class="icon-thumbnail">sp</span>
-                    </li>
-                    <li class="">
-                        <a href="#">Sub Page 2</a>
-                        <span class="icon-thumbnail">sp</span>
-                    </li>
-                    <li class="">
-                        <a href="#">Sub Page 3</a>
-                        <span class="icon-thumbnail">sp</span>
-                    </li>
-                </ul>
-            </li>
+            @endforeach
         </ul>
         <div class="clearfix"></div>
     </div>

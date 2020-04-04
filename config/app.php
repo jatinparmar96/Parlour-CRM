@@ -229,4 +229,29 @@ return [
 
     ],
 
+    'sidebar' => [
+        'dashboard' => [
+            'name' => 'Dashboard',
+            'route' => 'dashboard.index',
+            'logo' => 'inbox'
+        ],
+        'customer' => [
+            'name' => 'Customer',
+            'route' => 'customer.index',
+            'logo' => ''
+        ],
+        'service' => [
+            'name' => 'Service',
+            'route' => 'service.index',
+            'logo' => ''
+        ],
+        'employee' => [
+            'name' => 'Employee',
+            'route' => 'employee.index',
+            'logo' => ''
+        ],
+
+
+    ]
+
 ];
