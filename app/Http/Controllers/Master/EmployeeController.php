@@ -37,7 +37,10 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $employee = new Employee();
+        $employee->fill($request->all());
+        $employee->shop_id = 1;
+        $employee->save();
     }
 
     /**

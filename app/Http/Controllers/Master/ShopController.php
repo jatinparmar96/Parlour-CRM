@@ -15,7 +15,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
+        $shops = Shop::all();
     }
 
     /**
@@ -36,7 +36,10 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shop = new Shop();
+        $shop->fill($request->all());
+        $shop->user_id = 1;
+        $shop->save();
     }
 
     /**

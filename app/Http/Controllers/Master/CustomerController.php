@@ -15,7 +15,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::all();
+        return view('customer.index',compact('customers'));
     }
 
     /**
@@ -36,7 +37,10 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = new Customer();
+        $customer->fill($request->all());
+        $customer->shop_id = 1;
+        $customer->save();
     }
 
     /**

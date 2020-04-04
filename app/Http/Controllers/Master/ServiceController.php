@@ -15,7 +15,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::all();
+        return view('service.index', compact('services'));
     }
 
     /**
@@ -36,7 +37,10 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shop = new Service();
+        $shop->fill($request->all());
+        $shop->shop_id = 1;
+        $shop->save();
     }
 
     /**
