@@ -54,7 +54,7 @@
                 <!-- END JUMBOTRON -->
 
                 <!-- START CONTAINER FLUID -->
-                <div class="container-fluid container-fixed-lg">
+                <div class="container-fluid">
                     <!-- BEGIN PlACE PAGE CONTENT HERE -->
                     @yield('content')
                     <!-- END PLACE PAGE CONTENT HERE -->
@@ -595,6 +595,7 @@
     <!-- BEGIN PAGE LEVEL JS -->
     <script src="assets/js/scripts.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS -->
+    @yield('scripts')
 </body>
 
 </html>
