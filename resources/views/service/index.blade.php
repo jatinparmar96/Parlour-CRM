@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Employee
+    Service
 @endsection
 @section('content')
 <div class="row">
@@ -17,10 +17,6 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-
-                        </tbody>
-                        <tfoot></tfoot>
                     </table>
                 </div>
             </div>
@@ -37,7 +33,7 @@
     <script src="assets/plugins/datatables-responsive/js/lodash.min.js" type="text/javascript">
         <script>
     $(document).ready(function() {
-        let data = JSON.parse('{!! $employees !!}');
+        let data = JSON.parse('{!! $services !!}');
         $('#resource-table').dataTable({
             data: data.data,
             columns:[

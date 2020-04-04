@@ -17,10 +17,6 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-
-                        </tbody>
-                        <tfoot></tfoot>
                     </table>
                 </div>
             </div>
