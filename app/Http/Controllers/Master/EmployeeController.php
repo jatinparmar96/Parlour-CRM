@@ -15,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::paginate();
+        $employees = json_encode(Employee::paginate());
         return view('employee.index', compact('employees'));
     }
 
