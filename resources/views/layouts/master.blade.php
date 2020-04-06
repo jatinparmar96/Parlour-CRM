@@ -6,21 +6,17 @@
     <meta charset="utf-8" />
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="apple-touch-icon" href="pages/ico/60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="pages/ico/76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="pages/ico/120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="pages/ico/152.png">
+<link rel="apple-touch-icon" href="{{url('pages/ico/60.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{url('pages/ico/76.png')}}>
+    <link rel="apple-touch-icon" sizes="120x120" href="{{url('pages/ico/120.png')}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{url('pages/ico/152.png')}}">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta content="" name="description" />
     <meta content="" name="author" />
-    <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link class="main-stylesheet" href="pages/css/pages.css" rel="stylesheet" type="text/css" />
+    @include('components.styles')
+
 </head>
 
 <body class="fixed-header menu-pin">
@@ -323,9 +319,9 @@
                                             data-navigate="view" class="" href="#">
                                             <span class="thumbnail-wrapper d32 circular bg-success">
                                                 <img width="34" height="34" alt=""
-                                                    data-src-retina="assets/img/profiles/1x.jpg"
-                                                    data-src="assets/img/profiles/1.jpg"
-                                                    src="assets/img/profiles/1x.jpg" class="col-top">
+                                                    data-src-retina="{{url('assets/img/profiles/1x.jpg')}}"
+                                                    data-src="{{url('assets/img/profiles/1.jpg')}}"
+                                                    src="{{url('assets/img/profiles/1x.jpg')}}" class="col-top">
                                             </span>
                                             <p class="p-l-10 ">
                                                 <span class="text-color">ava flores</span>
@@ -370,9 +366,9 @@
                             <div class="message clearfix">
                                 <div class="profile-img-wrapper m-t-5 inline">
                                     <img class="col-top" width="30" height="30"
-                                        src="assets/img/profiles/avatar_small.jpg" alt=""
-                                        data-src="assets/img/profiles/avatar_small.jpg"
-                                        data-src-retina="assets/img/profiles/avatar_small2x.jpg">
+                                src="{{url('assets/img/profiles/avatar_small.jpg')}}" alt=""
+                                        data-src="{{url('assets/img/profiles/avatar_small.jpg')}}"
+                                        data-src-retina="{{url('assets/img/profiles/avatar_small2x.jpg')}}">
                                 </div>
                                 <div class="chat-bubble from-them">
                                     Hey
@@ -397,9 +393,9 @@
                             <div class="message clearfix">
                                 <div class="profile-img-wrapper m-t-5 inline">
                                     <img class="col-top" width="30" height="30"
-                                        src="assets/img/profiles/avatar_small.jpg" alt=""
-                                        data-src="assets/img/profiles/avatar_small.jpg"
-                                        data-src-retina="assets/img/profiles/avatar_small2x.jpg">
+                                        src="{{url('assets/img/profiles/avatar_small.jpg')}}" alt=""
+                                        data-src="{{url('assets/img/profiles/avatar_small.jpg')}}"
+                                        data-src-retina="{{url('assets/img/profiles/avatar_small2x.jpg')}}">
                                 </div>
                                 <div class="chat-bubble from-them">
                                     Yea
@@ -439,8 +435,8 @@
             <!-- BEGIN Overlay Header !-->
             <div class="container-fluid">
                 <!-- BEGIN Overlay Logo !-->
-                <img class="overlay-brand" src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png"
-                    data-src-retina="assets/img/logo_2x.png" width="78" height="22">
+            <img class="overlay-brand" src="{{url('assets/img/logo.png')}}" alt="logo" data-src="{{url('assets/img/logo.png')}}"
+            data-src-retina="{{url('assets/img/logo_2x.png')}}" width="78" height="22">
                 <!-- END Overlay Logo !-->
                 <!-- BEGIN Overlay Close !-->
                 <a href="#" class="close-icon-light btn-link btn-rounded  overlay-close text-black">
@@ -478,9 +474,9 @@
                             <div class="d-flex m-t-15">
                                 <!-- BEGIN Search Result Item Thumbnail !-->
                                 <div class="thumbnail-wrapper d48 circular bg-success text-white ">
-                                    <img width="36" height="36" src="assets/img/profiles/avatar.jpg"
-                                        data-src="assets/img/profiles/avatar.jpg"
-                                        data-src-retina="assets/img/profiles/avatar2x.jpg" alt="">
+                                    <img width="36" height="36" src="{{url('assets/img/profiles/avatar.jpg')}}"
+                                        data-src="{{url('assets/img/profiles/avatar.jpg')}}"
+                                        data-src-retina="{{url('assets/img/profiles/avatar2x.jpg')}}" alt="">
                                 </div>
                                 <!-- END Search Result Item Thumbnail !-->
                                 <div class="p-l-10">
@@ -574,27 +570,8 @@
         </div>
         <!-- END Overlay Content !-->
     </div>
-    <!-- END OVERLAY -->
-    <!-- BEGIN VENDOR JS -->
-    <!-- BEGIN VENDOR JS -->
-    <script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/modernizr.custom.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/popper/umd/popper.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery/jquery-easy.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-actual/jquery.actual.min.js"></script>
-    <script src="assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-    <!-- END VENDOR JS -->
-    <!-- BEGIN CORE TEMPLATE JS -->
-    <script src="pages/js/pages.min.js" type="text/javascript"></script>
-    <!-- END CORE TEMPLATE JS -->
-    <!-- BEGIN PAGE LEVEL JS -->
-    <script src="assets/js/scripts.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL JS -->
+
+    @include('components.scripts')
     @yield('scripts')
 </body>
 

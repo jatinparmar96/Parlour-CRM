@@ -5,7 +5,7 @@
     <!-- END SIDEBAR MENU TOP TRAY CONTENT-->
     <!-- BEGIN SIDEBAR MENU HEADER-->
     <div class="sidebar-header">
-        <img src="assets/img/logo_white.png" alt="logo" class="brand" data-src="assets/img/logo_white.png"
+    <img src="{{url('assets/img/logo_white.png')}}" alt="logo" class="brand" data-src="{{url('assets/img/logo_white.png')}}"
             data-src-retina="assets/img/logo_white_2x.png" width="78" height="22">
         <div class="sidebar-header-controls">
             <button aria-label="Toggle Drawer" type="button"
