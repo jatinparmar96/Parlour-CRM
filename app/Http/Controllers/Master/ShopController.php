@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Master;
 use App\Http\Controllers\Controller;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
@@ -85,5 +86,18 @@ class ShopController extends Controller
     public function destroy(Shop $shop)
     {
         //
+    }
+
+    public function setShop(Request $request)
+    {
+        // dd($request->all());
+        $request->session()->put('shop_id', $request->shop);
+        return redirect()->route('home');
+    }
+
+    public function selectShop(Request $request)
+    {
+        $shops = Shop::all();
+        return view('auth.select-shop', compact('shops'));
     }
 }
