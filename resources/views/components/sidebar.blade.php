@@ -32,7 +32,12 @@
                 <a href="{{route($item['route'])}}">
                         <span class="title">{{$item['name']}}</span>
                     </a>
-                    <span class="icon-thumbnail "><i class="pg-icon">{{$item['logo']}}</i></span>
+
+
+                        <span class="icon-thumbnail ">
+                            <a href="{{isset($item['create_route']) ? route($item['create_route']) : '#'}}"><i class="pg-icon">{{$item['logo']}}</i>
+                            </a></span>
+
             </li>
             @endforeach
         </ul>

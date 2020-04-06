@@ -233,22 +233,25 @@ return [
         'dashboard' => [
             'name' => 'Dashboard',
             'route' => 'dashboard.index',
-            'logo' => 'inbox'
+            'logo' => 'inbox',
         ],
         'customer' => [
             'name' => 'Customer',
             'route' => 'customer.index',
-            'logo' => ''
+            'logo' => 'add',
+            'create_route' => 'customer.create'
         ],
         'service' => [
             'name' => 'Service',
             'route' => 'service.index',
-            'logo' => ''
+            'logo' => 'add',
+            'create_route' => 'service.create'
         ],
         'employee' => [
             'name' => 'Employee',
             'route' => 'employee.index',
-            'logo' => ''
+            'logo' => 'add',
+            'create_route' => 'service.create'
         ],
 
 
