@@ -15,6 +15,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta content="" name="description" />
     <meta content="" name="author" />
+
+    @yield('styles')
     @include('components.styles')
 
 </head>
