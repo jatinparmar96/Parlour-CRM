@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\map;
+
 class ServiceController extends Controller
 {
     /**
@@ -16,6 +18,10 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::all();
+        $services->map(function ($item) {
+            return $item->action = "<a class='btn btn-sm btn-warning' href='" . route('service.edit', $item->id) . "'>Edit</a>";
+        });
+        $service = $services->toJson();
         return view('service.index', compact('services'));
     }
 
@@ -26,7 +32,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('service.create');
     }
 
     /**
@@ -37,10 +43,14 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $shop = new Service();
-        $shop->fill($request->all());
-        $shop->shop_id = 1;
-        $shop->save();
+        $service = new Service();
+        $service->fill($request->all());
+        $service->shop_id = session('shop_id');
+        $service->save();
+        return response()->json([
+            'status' => true,
+            'service' => $service
+        ]);
     }
 
     /**
@@ -62,7 +72,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return view('service.edit', compact('service'));
     }
 
     /**
@@ -74,7 +84,12 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $service->fill($request->all());
+        $service->save();
+        return response()->json([
+            'status' => true,
+            'service' => $service
+        ]);
     }
 
     /**
