@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Create a Service
+Update an Employee
 @endsection
 @section('content')
 <div class="row">
@@ -11,11 +11,11 @@ Create a Service
                     @csrf
                     <div class="form-group form-group-default ">
                         <label>Name</label>
-                        <input type="text" name="name" class="form-control" required>
+                    <input type="text" name="name" value="{{$employee->name}}" class="form-control" required>
                     </div>
                     <div class="form-group form-group-default">
                         <label>Description</label>
-                        <input type="text" class="form-control" name="description">
+                        <input type="text" class="form-control" value="{{$employee->description}}" name="description">
                     </div>
                     <button onclick="validateForm(event)" type="submit" class="btn btn-success">Submit</button>
                 </form>
@@ -39,21 +39,19 @@ Create a Service
     function formSubmit() {
         const form = $('#resource-create-form')
         const formData = form.serializeArray();
-        $.post("{{route('employee.store')}}", formData)
+        $.post("{{route('employee.update',$employee->id)}}"+"?_method=PUT", formData)
             .done(function (data) {
                 $('body').pgNotification({
                         style: 'circle',
-                        message: "Employee Added Successfully",
+                        message: "Employee Edited Successfully",
                         type: "success",
                         timeout: 4000,
                     })
                     .show()
-                form[0].reset();
             })
             .fail(function (error) {
                 console.log(error)
             });
     }
-
 </script>
 @endsection

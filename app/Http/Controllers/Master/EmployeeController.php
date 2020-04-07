@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\map;
+
 class EmployeeController extends Controller
 {
     /**
@@ -15,7 +17,11 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = json_encode(Employee::paginate());
+        $employees = Employee::all();
+        $employees->map(function ($item) {
+            return $item->action = "<a class='btn btn-sm btn-warning' href='" . route('employee.edit', $item->id) . "'>Edit</a>";
+        });
+        $employees = $employees->toJson();
         return view('employee.index', compact('employees'));
     }
 
@@ -26,7 +32,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employee.create');
     }
 
     /**
@@ -39,8 +45,12 @@ class EmployeeController extends Controller
     {
         $employee = new Employee();
         $employee->fill($request->all());
-        $employee->shop_id = 1;
+        $employee->shop_id = session('shop_id');
         $employee->save();
+        return response()->json([
+            'status' => true,
+            'employee' => $employee
+        ]);
     }
 
     /**
@@ -62,7 +72,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('employee.edit', compact('employee'));
     }
 
     /**
@@ -74,7 +84,12 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $employee->fill($request->all());
+        $employee->save();
+        return response()->json([
+            'status' => true,
+            'employee' => $employee
+        ]);
     }
 
     /**

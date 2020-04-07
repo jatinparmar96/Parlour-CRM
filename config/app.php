@@ -251,7 +251,7 @@ return [
             'name' => 'Employee',
             'route' => 'employee.index',
             'logo' => 'add',
-            'create_route' => 'service.create'
+            'create_route' => 'employee.create'
         ],
 
 
