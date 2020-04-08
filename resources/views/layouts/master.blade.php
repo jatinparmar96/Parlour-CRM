@@ -44,7 +44,7 @@
                     <div class=" container-fluid container-fixed-lg sm-p-l-0 sm-p-r-0">
                         <div class="inner">
                             <!-- START BREADCRUMB -->
-                            @include('components.breadcrumb')
+                            @yield('breadcrumbs')
                             <!-- END BREADCRUMB -->
                         </div>
                     </div>

@@ -16,6 +16,10 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::all();
+        $customers->map(function ($item) {
+            return $item->action = "<a class='btn btn-sm btn-warning' href='" . route('customer.edit', $item->id) . "'>Edit</a>";
+        });
+        $customers = $customers->toJson();
         return view('customer.index', compact('customers'));
     }
 
@@ -39,8 +43,12 @@ class CustomerController extends Controller
     {
         $customer = new Customer();
         $customer->fill($request->all());
-        $customer->shop_id = 1;
+        $customer->shop_id = session('shop_id');
         $customer->save();
+        return response()->json([
+            'status' => true,
+            'customer' => $customer
+        ]);
     }
 
     /**
@@ -62,7 +70,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customer.edit', compact('customer'));
     }
 
     /**
@@ -74,7 +82,13 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $customer->fill($request->all());
+        $customer->shop_id = session('shop_id');
+        $customer->save();
+        return response()->json([
+            'status' => true,
+            'customer' => $customer
+        ]);
     }
 
     /**

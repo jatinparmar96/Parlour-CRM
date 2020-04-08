@@ -2,9 +2,7 @@
 @section('title')
 Add Customer
 @endsection
-
-@section('breadcrumbs', Breadcrumbs::render('customer.create'))
-
+@section('breadcrumbs', Breadcrumbs::render('customer.edit',$customer))
 
 @section('content')
 <div class="row">
@@ -15,15 +13,15 @@ Add Customer
                     @csrf
                     <div class="form-group form-group-default ">
                         <label>Name</label>
-                        <input type="text" name="name" class="form-control" required>
+                    <input type="text" value="{{$customer->name}}" name="name" class="form-control" required>
                     </div>
                     <div class="form-group form-group-default">
                         <label>Phone Number</label>
-                        <input type="text" name="phone_number" class="form-control">
+                        <input type="text" value="{{$customer->phone_number}}" name="phone_number" class="form-control">
                     </div>
                     <div class="form-group form-group-default">
                         <label>Email</label>
-                        <input type="email" value="" name="email_id" class="form-control" required>
+                        <input type="email" value="{{$customer->email_id}}" name="email_id" class="form-control" required>
                     </div>
                     <button onclick="validateForm(event)" type="submit" class="btn btn-success">Submit</button>
                 </form>
@@ -44,25 +42,22 @@ Add Customer
             submitHandler: formSubmit
         });
     }
-
     function formSubmit() {
         const form = $('#resource-create-form')
         const formData = form.serializeArray();
-        $.post("{{route('customer.store')}}", formData)
+        $.post("{{route('customer.update',$customer->id)}}"+"?_method=PUT", formData)
             .done(function (data) {
                 $('body').pgNotification({
                         style: 'circle',
-                        message: "Customer Added Successfully",
+                        message: "Customer Updated Successfully",
                         type: "success",
                         timeout: 4000,
                     })
                     .show()
-                form[0].reset();
             })
             .fail(function (error) {
                 console.log(error)
             });
     }
-
 </script>
 @endsection
