@@ -10,6 +10,8 @@
 @endsection
 Service
 @endsection
+@section('breadcrumbs', Breadcrumbs::render('service'))
+
 @section('content')
 <div class="row">
     <div class="col-md-12">

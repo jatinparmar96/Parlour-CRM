@@ -2,6 +2,7 @@
 @section('title')
 Update an Employee
 @endsection
+@section('breadcrumbs', Breadcrumbs::render('employee.edit',$employee))
 @section('content')
 <div class="row">
     <div class="col-md-8 col-sm-10 col-xs-12 offset-sm-1  offset-md-2">

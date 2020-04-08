@@ -2,6 +2,7 @@
 @section('title')
 Employee
 @endsection
+@section('breadcrumbs', Breadcrumbs::render('employee'))
 @section('content')
 <div class="row">
     <div class="col-md-12">
