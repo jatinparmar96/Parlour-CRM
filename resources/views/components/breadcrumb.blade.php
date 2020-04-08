@@ -1,4 +1,13 @@
+@if (isset($breadcrumbs) ? count($breadcrumbs):false )
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Barebone</a></li>
-    <li class="breadcrumb-item active">Layout</li>
-  </ol>
+    @foreach ($breadcrumbs as $breadcrumb)
+
+    @if ($breadcrumb->url && !$loop->last)
+        <li class="breadcrumb-item"><a href="{{ $breadcrumb->url }}">{{ $breadcrumb->title }}</a></li>
+    @else
+        <li class="breadcrumb-item active">{{ $breadcrumb->title }}</li>
+    @endif
+
+@endforeach
+</ol>
+@endif
