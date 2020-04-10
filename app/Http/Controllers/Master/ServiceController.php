@@ -17,11 +17,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
-        $services->map(function ($item) {
-            return $item->action = "<a class='btn btn-sm btn-warning' href='" . route('service.edit', $item->id) . "'>Edit</a>";
-        });
-        $service = $services->toJson();
+        $services = Service::all()->toJson();
         return view('service.index', compact('services'));
     }
 

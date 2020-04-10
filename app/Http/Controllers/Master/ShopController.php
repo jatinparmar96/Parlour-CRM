@@ -98,6 +98,7 @@ class ShopController extends Controller
     public function selectShop(Request $request)
     {
         $shops = Shop::all();
+        $request->session()->put('shops',$shops);
         return view('auth.select-shop', compact('shops'));
     }
 }

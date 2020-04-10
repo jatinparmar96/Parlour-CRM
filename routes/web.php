@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Auth::routes();
+\Illuminate\Support\Facades\Auth::routes();
 
 Route::get('select-shop', 'Master\ShopController@selectShop')->name('select-shop');
 Route::post('setShop', 'Master\ShopController@setShop')->name('setShop');

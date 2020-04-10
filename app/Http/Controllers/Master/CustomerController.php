@@ -15,11 +15,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all();
-        $customers->map(function ($item) {
-            return $item->action = "<a class='btn btn-sm btn-warning' href='" . route('customer.edit', $item->id) . "'>Edit</a>";
-        });
-        $customers = $customers->toJson();
+        $customers = Customer::all()->toJson();
         return view('customer.index', compact('customers'));
     }
 
@@ -54,7 +50,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function show(Customer $customer)
@@ -65,7 +61,7 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function edit(Customer $customer)
@@ -77,7 +73,7 @@ class CustomerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Customer  $customer
+     * @param Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Customer $customer)
@@ -94,11 +90,11 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function destroy(Customer $customer)
     {
-        //
+        return  response('',404);
     }
 }

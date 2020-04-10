@@ -79,7 +79,10 @@ Service
                     data: 'description',
                 },
                 {
-                    data: 'action',
+                    data:'edit_url',
+                    render:function (data,type,row) {
+                        return `<a class='btn btn-sm btn-warning' href="${data}">Edit</a>`
+                    }
                 }
             ]
         });

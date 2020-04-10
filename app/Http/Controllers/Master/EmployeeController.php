@@ -17,11 +17,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
-        $employees->map(function ($item) {
-            return $item->action = "<a class='btn btn-sm btn-warning' href='" . route('employee.edit', $item->id) . "'>Edit</a>";
-        });
-        $employees = $employees->toJson();
+        $employees = Employee::all()->toJson();
         return view('employee.index', compact('employees'));
     }
 
