@@ -19,6 +19,8 @@
                                 <th>Name</th>
                                 <th>Phone Number</th>
                                 <th>Email ID</th>
+                                <th>Birth Date</th>
+                                <th>Anniversary Date</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -40,7 +42,7 @@
             let table = $('#resource-table');
     $(document).ready(function () {
         let data = {!!$customers!!};
-
+        console.log(data)
         table.dataTable({
             "sDom": "<'table-responsive't><'row'<p i>>",
             "sPaginationType": "bootstrap",
@@ -50,7 +52,7 @@
                 "sLengthMenu": "_MENU_ ",
                 "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
             },
-            "iDisplayLength": 5,
+            "iDisplayLength": 15,
             data: data,
             columns:[
                 {
@@ -64,6 +66,12 @@
                 },
                 {
                     data:'email_id',
+                },
+                {
+                    data:'birth_date',
+                },
+                {
+                    data:'anniversary_date',
                 },
                 {
                     data:'edit_url',

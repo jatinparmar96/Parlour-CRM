@@ -50,7 +50,7 @@ Employee
                 "sLengthMenu": "_MENU_ ",
                 "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
             },
-            "iDisplayLength": 5,
+            "iDisplayLength": 15,
             data: services,
             columns: [{
                     data: 'id',
