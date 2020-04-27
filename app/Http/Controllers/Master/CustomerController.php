@@ -32,7 +32,7 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -72,7 +72,7 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @param Customer $customer
      * @return \Illuminate\Http\Response
      */
@@ -95,6 +95,19 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        return  response('',404);
+        return response('', 404);
+    }
+
+    public function getCustomers(Request $request)
+    {
+        $customers = Customer::all()->toJson();
+        return response()->json([
+            'status' => true,
+            'data' => $customers
+        ]);
+    }
+
+    public function search(Request $request,$term)
+    {
     }
 }

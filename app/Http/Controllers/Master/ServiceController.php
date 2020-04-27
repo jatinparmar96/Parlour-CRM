@@ -91,11 +91,22 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Service  $service
+     * @param \App\Models\Service $service
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        return redirect()->back();
+    }
+
+    public function getServices()
+    {
+        $services = Service::all()->toJson();
+        return response()->json([
+            'status' => true,
+            'data' => $services
+        ]);
     }
 }
