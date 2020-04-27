@@ -6,7 +6,7 @@
     <div class="">
         <div class="brand inline   ">
             <img src="{{url('assets/img/logo.png')}}" alt="logo" data-src="{{url('assets/img/logo.png')}}"
-                data-src-retina="{{url('assets/img/logo_2x.png')}}" width="78" height="22">
+                 data-src-retina="{{url('assets/img/logo_2x.png')}}" width="78" height="22">
         </div>
         <!-- START NOTIFICATION LIST -->
         <ul
@@ -14,7 +14,7 @@
             <li class="p-r-5 inline">
                 <div class="dropdown">
                     <a href="javascript:;" id="notification-center" class="header-icon  btn-icon-link"
-                        data-toggle="dropdown">
+                       data-toggle="dropdown">
                         <i class="pg-icon">world</i>
                         <span class="bubble"></span>
                     </a>
@@ -56,7 +56,7 @@
                                     <!-- END Notification Item-->
                                     <!-- START Notification Item Right Side-->
                                     <div class="option" data-toggle="tooltip" data-placement="left"
-                                        title="mark as read">
+                                         title="mark as read">
                                         <a href="#" class="mark"></a>
                                     </div>
                                     <!-- END Notification Item Right Side-->
@@ -101,9 +101,10 @@
                                     <div class="heading">
                                         <div
                                             class="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">
-                                            <img width="30" height="30" data-src-retina="{{url('assets/img/profiles/1x.jpg')}}"
-                                                data-src="{{url('assets/img/profiles/1.jpg')}}" alt=""
-                                                src="{{url('assets/img/profiles/1.jpg')}}">
+                                            <img width="30" height="30"
+                                                 data-src-retina="{{url('assets/img/profiles/1x.jpg')}}"
+                                                 data-src="{{url('assets/img/profiles/1.jpg')}}" alt=""
+                                                 src="{{url('assets/img/profiles/1.jpg')}}">
                                         </div>
                                         <a href="#" class="text-complete pull-left">
                                             <span class="bold">Revox Design Labs</span>
@@ -113,7 +114,7 @@
                                     </div>
                                     <!-- START Notification Item Right Side-->
                                     <div class="option" data-toggle="tooltip" data-placement="left"
-                                        title="mark as read">
+                                         title="mark as read">
                                         <a href="#" class="mark"></a>
                                     </div>
                                     <!-- END Notification Item Right Side-->
@@ -152,16 +153,27 @@
     </div>
     <div class="d-flex align-items-center">
         <!-- START User Info-->
+        <div class="m-r-15">
+            <div class="btn-group dropdown-default">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Select Shop <span class="caret"></span> </a>
+                <div class="dropdown-menu">
+                        @foreach(session('shops') as $shop)
+                        <a class="dropdown-item">{{$shop->name}}</a>
+                        @endforeach
+                </div>
+            </div>
+        </div>
         <div class="dropdown pull-right d-lg-block d-none">
             <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false" aria-label="profile dropdown">
+                    aria-expanded="false" aria-label="profile dropdown">
                 <span class="thumbnail-wrapper d32 circular inline">
-                    <img src="{{url('assets/img/profiles/avatar.jpg')}}" alt="" data-src="{{url('assets/img/profiles/avatar.jpg')}}"
-                        data-src-retina="{{url('assets/img/profiles/avatar_small2x.jpg')}}" width="32" height="32">
+                    <img src="{{url('assets/img/profiles/avatar.jpg')}}" alt=""
+                         data-src="{{url('assets/img/profiles/avatar.jpg')}}"
+                         data-src-retina="{{url('assets/img/profiles/avatar_small2x.jpg')}}" width="32" height="32">
                 </span>
             </button>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
-                <a href="#" class="dropdown-item"><span>Signed in as <br /><b>David Aunsberg</b></span></a>
+                <a href="#" class="dropdown-item"><span>Signed in as <br/><b>David Aunsberg</b></span></a>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">Your Profile</a>
                 <a href="#" class="dropdown-item">Your Activity</a>
@@ -171,9 +183,9 @@
                 <a href="#" class="dropdown-item">Help</a>
                 <a href="#" class="dropdown-item">Settings</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                 <div class="dropdown-divider"></div>
-                <span class="dropdown-item fs-12 hint-text">Last edited by David<br />on Friday at 5:27PM</span>
+                <span class="dropdown-item fs-12 hint-text">Last edited by David<br/>on Friday at 5:27PM</span>
             </div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
@@ -181,7 +193,7 @@
         </div>
         <!-- END User Info-->
         <a href="#" class="header-icon m-l-5 sm-no-margin d-inline-block" data-toggle="quickview"
-            data-toggle-element="#quickview">
+           data-toggle-element="#quickview">
             <i class="pg-icon btn-icon-link">menu_add</i>
         </a>
     </div>

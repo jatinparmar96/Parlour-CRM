@@ -253,8 +253,12 @@ return [
             'logo' => 'add',
             'create_route' => 'employee.create'
         ],
-
-
+        'bill' => [
+            'name' => 'Bill',
+            'route' => 'bill.index',
+            'logo' => 'add',
+            'create_route' => 'bill.create'
+        ],
     ]
 
 ];

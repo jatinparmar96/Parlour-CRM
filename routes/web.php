@@ -26,6 +26,14 @@ Route::group(['middleware' => ['shop.selected', 'auth']], function () {
     Route::resource('employee', 'Master\EmployeeController');
     Route::resource('service', 'Master\ServiceController');
     Route::resource('customer', 'Master\CustomerController');
+    Route::resource('bill', 'BillController');
+
+    Route::get('getCustomers','Master\CustomerController@getCustomers')->name('getCustomers');
+
+    Route::get('getEmployees','Master\EmployeeController@getEmployees')->name('getEmployees');
+
+    Route::get('getServices','Master\ServiceController@getServices')->name('getServices');
+
     Route::get('/home', function () {
         return view('demo');
     })->name('home');

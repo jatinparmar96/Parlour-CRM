@@ -1,6 +1,6 @@
  $(document).ready(function() {
         // Initializes search overlay plugin.
-        // Replace onSearchSubmit() and onKeyEnter() with 
+        // Replace onSearchSubmit() and onKeyEnter() with
         // your logic to perform a search and display results
         $('[data-pages="search"]').search({
             searchField: '#overlay-search',
@@ -18,7 +18,7 @@
                 searchResults.fadeOut("fast");
                 var wait = setTimeout(function() {
                     searchResults.find('.result-name').each(function() {
-                        if (searchField.val().length != 0) {
+                        if (searchField.val().length !== 0) {
                             $(this).html(searchField.val());
                             searchResults.fadeIn("fast");
                         }
