@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Service whereShopId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Service whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read mixed $edit_url
  */
 class Service extends Model
 {
@@ -36,10 +37,18 @@ class Service extends Model
         'cost',
         'description'
     ];
-    protected $appends = ['edit_url'];
+    protected $appends = ['edit_url','actions'];
 
     public function getEditUrlAttribute()
     {
         return route('service.edit',$this->id);
+    }
+
+    public function getActionsAttribute()
+    {
+        return [
+            'edit' => route('service.edit', $this->id),
+            'delete' => route('service.destroy', $this->id)
+        ];
     }
 }

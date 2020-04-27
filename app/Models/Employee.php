@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employee whereShopId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Employee whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read mixed $edit_url
  */
 class Employee extends Model
 {
@@ -30,10 +32,19 @@ class Employee extends Model
         'name',
         'description',
     ];
-    protected $appends = ['edit_url'];
+    protected $appends = ['edit_url','actions'];
 
     public function getEditUrlAttribute()
     {
-        return route('employee.edit',$this->id);
+        return route('employee.edit', $this->id);
     }
+
+    public function getActionsAttribute()
+    {
+        return [
+            'edit' => route('employee.edit', $this->id),
+            'delete' => route('employee.destroy', $this->id)
+        ];
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,18 +26,55 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Customer whereShopId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Customer whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read mixed $edit_url
  */
 class Customer extends Model
 {
-    protected $fillable = [
-        'name',
-        'phone_number',
-        'email_id'
+    protected $guarded = [
+        'shop_id',
     ];
     protected $appends = ['edit_url'];
 
     public function getEditUrlAttribute()
     {
-        return route('customer.edit',$this->id);
+        return route('customer.edit', $this->id);
+    }
+
+    public function getBirthDateAttribute($value)
+    {
+        if ($value) {
+            return Carbon::createFromFormat('Y-m-d', $value)->toFormattedDateString();
+        }
+        return $value;
+    }
+
+    public function getAnniversaryDateAttribute($value)
+    {
+        if ($value) {
+            return Carbon::createFromFormat('Y-m-d', $value)->toFormattedDateString();
+        }
+        return $value;
+    }
+
+    public function setBirthDateAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['birth_date'] = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+        } else {
+            $this->attributes['birth_date'] = $value;
+        }
+    }
+
+    public function setAnniversaryDateAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['anniversary_date'] = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+        } else {
+            $this->attributes['anniversary_date'] = $value;
+        }
+    }
+    public function setNameAttribute($value)
+    {
+       $this->attributes['name']= ucwords($value);
     }
 }
