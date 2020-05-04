@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
 \Illuminate\Support\Facades\Auth::routes();
 
 Route::get('select-shop', 'Master\ShopController@selectShop')->name('select-shop');
@@ -27,12 +26,12 @@ Route::group(['middleware' => ['shop.selected', 'auth']], function () {
     Route::resource('service', 'Master\ServiceController');
     Route::resource('customer', 'Master\CustomerController');
     Route::resource('bill', 'BillController');
+    Route::get('bills', 'BillController@get')->name('bill.get');
+    Route::get('getCustomers', 'Master\CustomerController@getCustomers')->name('getCustomers');
 
-    Route::get('getCustomers','Master\CustomerController@getCustomers')->name('getCustomers');
+    Route::get('getEmployees', 'Master\EmployeeController@getEmployees')->name('getEmployees');
 
-    Route::get('getEmployees','Master\EmployeeController@getEmployees')->name('getEmployees');
-
-    Route::get('getServices','Master\ServiceController@getServices')->name('getServices');
+    Route::get('getServices', 'Master\ServiceController@getServices')->name('getServices');
 
     Route::get('/home', function () {
         return view('demo');

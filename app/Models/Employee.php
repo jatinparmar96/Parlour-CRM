@@ -32,7 +32,7 @@ class Employee extends Model
         'name',
         'description',
     ];
-    protected $appends = ['edit_url','actions'];
+    protected $appends = ['edit_url', 'actions'];
 
     public function getEditUrlAttribute()
     {
@@ -45,6 +45,11 @@ class Employee extends Model
             'edit' => route('employee.edit', $this->id),
             'delete' => route('employee.destroy', $this->id)
         ];
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucwords($value);
     }
 
 }

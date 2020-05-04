@@ -18,7 +18,7 @@ class CreateBillsTable extends Migration
             $table->integer('shop_id')->references('id')->on('shops');
             $table->integer('customer_id')->references('id')->on('customers')->nullable();
             $table->integer('employee_id')->references('id')->on('employees');
-            $table->double('price');
+            $table->double('bill_price');
             $table->double('cost')->nullable();
             $table->timestamps();
         });

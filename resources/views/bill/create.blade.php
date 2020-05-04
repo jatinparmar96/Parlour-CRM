@@ -14,6 +14,9 @@
           href="{{url('assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css')}}">
     <link media="screen" type="text/css" rel="stylesheet"
           href="{{url('assets/plugins/datatables-responsive/css/datatables.responsive.css')}}">
+    <link media="screen" type="text/css" rel="stylesheet"
+          href="{{url('assets/plugins/bootstrap-datepicker/css/datepicker3.css')}}">
+    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
     <div class="row">
@@ -22,6 +25,14 @@
                 <div class="card-body">
                     <form role="form" id="resource-create-form">
                         @csrf
+                        <div class="form-group form-group-default ">
+                            <label for="bill_date">Entry Date</label>
+                            <div id="myDatepicker" class="input-group date">
+                                <input type="text"
+                                       name="bill_date" class="form-control">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
                         <div class="form-group form-group-default ">
                             <label for="customer_id">Customer Name</label>
                             <select class="full-width" name="customer_id" id="customer_id">
@@ -62,6 +73,12 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+
+                        <div class="form-group form-group-default">
+                            <span>Total Price: </span>
+                            <input class="form-control form-control-sm text-danger" readonly name="bill_price"
+                                   id="total-price">
                         </div>
                         <button onclick="validateForm(event)" type="submit" class="btn btn-success">Submit</button>
                     </form>
@@ -108,13 +125,19 @@
     <script src="{{url('assets/plugins/datatables-responsive/js/datatables.responsive.js')}}"
             type="text/javascript"></script>
     <script src="{{url('assets/plugins/datatables-responsive/js/lodash.min.js')}}" type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{url('assets/js/axios.min.js')}}"></script>
+    <script type="text/javascript"
+            src="{{url('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
     <script>
         let selectedServices = [];
         $(document).ready(function () {
             setSelectResource("{{route('getEmployees')}}", 'employee_id');
             setSelectResource("{{route('getCustomers')}}", 'customer_id');
-            setSelectResource("{{route('getServices')}}", 'service', 'service-modal',true);
+            setSelectResource("{{route('getServices')}}", 'service', 'service-modal', true);
+            $('.date').datepicker({
+                format: 'dd-mm-yyyy',
+                autoclose: true
+            }).datepicker('setDate', Date());
             let table = $('#service-list-table').DataTable({
                 "sDom": "t",
                 "destroy": true,
@@ -135,6 +158,7 @@
             $('#add-service').on('click', function () {
                 const serviceData = JSON.parse($('#service').val());
                 selectedServices.push(serviceData);
+                calculateTotalPrice();
                 table.row.add([
                     '',
                     serviceData.name,
@@ -144,6 +168,7 @@
             });
             $('#service-list-table tbody').on('click', 'a.btn.btn-sm', function () {
                 selectedServices.splice(table.row($(this).parents('tr')).index(), 1);
+                calculateTotalPrice();
                 table
                     .row($(this).parents('tr'))
                     .remove()
@@ -151,16 +176,24 @@
             });
         });
 
-        function setSelectResource(url, selectId, dropDownParent = null,stringifyValue=false) {
+        function calculateTotalPrice() {
+
+            const total_price = selectedServices.reduce((acc, val) => {
+                console.log(val);
+                return acc + val.charge
+            }, 0);
+            $('#total-price').val(total_price);
+        }
+
+        function setSelectResource(url, selectId, dropDownParent = null, stringifyValue = false) {
             axios.get(url).then((data) => {
                 let parsedData = JSON.parse(data.data.data);
 
-                if(stringifyValue){
+                if (stringifyValue) {
                     parsedData = parsedData.map(value => {
                         return {'id': JSON.stringify(value), 'text': value.name}
                     });
-                }
-                else{
+                } else {
                     parsedData = parsedData.map(value => {
                         return {'id': value.id, 'text': value.name}
                     });
@@ -177,16 +210,13 @@
                         data: parsedData
                     });
                 }
-
             });
         }
 
         // Validate the Form
         function validateForm(event) {
             $('#resource-create-form').validate({
-                'rules': {
-                    'name': 'required',
-                },
+                'rules': {},
                 submitHandler: formSubmit
             });
         }
@@ -194,18 +224,18 @@
         function formSubmit() {
             const form = $('#resource-create-form')
             let formData = form.serializeArray();
-            formData.service_id = selectedServices;
-            console.log(formData)
+            const services = selectedServices.map(value => value.id);
+            formData.push({'name': 'service_id', value: services});
             $.post("{{route('bill.store')}}", formData)
                 .done(function (data) {
                     $('body').pgNotification({
                         style: 'circle',
-                        message: "Employee Added Successfully",
+                        message: "Bill Added Successfully",
                         type: "success",
                         timeout: 4000,
                     })
                         .show()
-                    form[0].reset();
+                    // form[0].reset();
                 })
                 .fail(function (error) {
                     console.log(error)
