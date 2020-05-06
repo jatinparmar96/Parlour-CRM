@@ -56,6 +56,13 @@
                                 <th>Actions</th>
                             </tr>
                             </thead>
+                            <tfoot>
+                            <tr>
+                                <th colspan="6" class="text-center">
+                                    Total Price is <span id="total_price" class="text-success"></span>
+                                </th>
+                            </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -139,6 +146,11 @@
             table.api().column(0).nodes().each(function (cell, i) {
                 cell.innerHTML = i + 1;
             });
+            let total_price = 0;
+            table.api().column(4).nodes().each(function (cell, i) {
+                total_price += Number(cell.innerHTML);
+            });
+            $('#total_price').html(total_price)
         });
         $('#search-table').keyup(function () {
             table.fnFilter($(this).val());

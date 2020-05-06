@@ -49,7 +49,7 @@ class BillController extends Controller
         try {
             $bill->shop_id = session('shop_id');
             $bill->save();
-            $bill->services()->attach($services);
+            $bill->services()->withTimestamps()->attach($services);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([
